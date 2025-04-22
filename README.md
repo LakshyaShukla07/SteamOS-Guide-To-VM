@@ -49,8 +49,8 @@ steamdeck-recovery.img
 
 ## 📁 Step 2: Convert IMG to VDI
 
-1. Open PowerShell in the same folder as the `.img` file:
-   > Hold **Shift + Right Click** in white space → Select **"Open PowerShell window here"**
+1. Open PowerShell in the same folder as the `.img` file:  
+   > Hold **Shift + Right Click** in the white space → Select **"Open PowerShell window here"**
 
 2. Run the following commands:
 
@@ -106,8 +106,8 @@ sudo fdisk -l
 nano ./tools/repair_device.sh
 ```
 
-- Change the `DISK=` value to `/dev/sda` or whatever your drive is
-- Change the `DISKSUFFIX=` line to **blank** (delete `p`)
+- Change the `DISK=` value to `/dev/sda` or whatever your drive is  
+- Change the `DISKSUFFIX=` line to **blank** (delete `p`)  
 
 - Save: **CTRL+O**, Enter  
 - Exit: **CTRL+X**
@@ -118,7 +118,7 @@ nano ./tools/repair_device.sh
 sudo ./tools/repair_device.sh all
 ```
 
-- Click **Proceed** to destroy data when prompted.
+- Click **Proceed** to destroy data when prompted.  
 - After completion, click **Cancel** instead of rebooting.
 
 ---
@@ -184,13 +184,14 @@ sudo nano /etc/pacman.conf
 ```
 
 - Change repo sections like this:
-  ```
-  [jupiter]       → [jupiter-rel]
-  [core]          → [core-rel]
-  [extra]         → [extra-rel]
-  [community]     → [community-rel]
-  [multilib]      → [multilib-rel]
-  ```
+
+```
+[jupiter]       → [jupiter-rel]
+[core]          → [core-rel]
+[extra]         → [extra-rel]
+[community]     → [community-rel]
+[multilib]      → [multilib-rel]
+```
 
 - Save with **CTRL+O**, Enter, then **CTRL+X**
 
@@ -200,7 +201,7 @@ sudo nano /etc/pacman.conf
 sudo pacman -Syu
 ```
 
-4. In VirtualBox, go to:
+4. In VirtualBox, go to:  
    **Devices > Insert Guest Additions CD Image**
 
 5. In SteamOS, open **Dolphin File Manager**, click the CD icon, then open a terminal there:
@@ -215,45 +216,53 @@ sudo reboot now
 
 ## 🎉 You're Done!
 
-- You can now use **SteamOS in full desktop mode** inside VirtualBox.
-- **Screen resizing and integration** should now work with Guest Additions installed.
-
----
+You can now use **SteamOS in full desktop mode** inside VirtualBox.  
+**Screen resizing and integration** should now work with Guest Additions installed.
 
 ---
 
 ## 📄 License
 
-Copyright © 2025 Ethan Bonser, ChillVibez Studios
-Version: 1.0.0
-Published: 2025
-
-This guide is provided for educational and informational purposes only. All trademarks, including SteamOS and VirtualBox, are the property of their respective owners.
-
-You are free to share, copy, and adapt this content for non-commercial use, provided that proper credit is given to the original author. Modification for personal or educational use is allowed, but redistribution for profit without explicit permission is prohibited.
-
-If you improve this guide or adapt it for other platforms, contributions are welcomed via GitHub pull requests.
-
-**Author:** Ethan Tyler Bonser
-**Organization:** ChillVibez Studios
-**License Type:** MIT License
-**LinkedIn:** [linkedin.com/in/ethanbonser](https://www.linkedin.com/in/ethanbonser)
-**GitHub:** [github.com/ethanbonser](https://github.com/ethanbonser)
-
-
----
-
-## ✉️ Feedback
-
-Maintained by [Ethan Bonser](https://github.com/ethanbonser)  
-Feel free to submit issues or improvements via Pull Request.
+```
+© 2025 Ethan Bonser, ChillVibez Studios  
+Version: 1.0.0  
+Published: 2025  
+License: MIT  
 ```
 
+This guide is provided for educational and informational purposes only.  
+SteamOS and VirtualBox are trademarks of their respective owners.
+
+You are free to share, adapt, and use this content for non-commercial purposes with credit to the author. Redistribution for commercial gain is prohibited without explicit permission.
+
 ---
 
-✅ **How to use it**:
-1. Save the full content above into a `README.md` file.
-2. Push it to your GitHub repo (e.g., `steamos-vm-guide`).
-3. Add screenshots or badges if you'd like — just let me know and I’ll help format them.
+## 👤 About the Author
 
-Want me to bundle it into a `.zip` for upload or generate a GitHub repo structure for you? Just say the word!
+**Ethan Tyler Bonser**  
+Founder & CEO at ChillVibez Studios  
+📍 Gladwin, Michigan, USA  
+
+🎨 Creator • 🧠 Innovator • 🧰 Developer  
+
+I’m Ethan — a multidisciplinary creative, software developer, game designer, and entrepreneur. I build tools, apps, games, and experiences that blend creativity with functionality. From experimental Linux environments to expressive GUI tools and 16-bit pixel games, I believe in making technology more personal, inspiring, and fun.
+
+---
+
+## 🏢 About ChillVibez Studios
+
+**Digital Media & Development Studio**  
+✨ Projects that inspire, entertain, and empower
+
+ChillVibez Studios is a digital-first studio creating apps, games, and multimedia tools that spark imagination. We focus on interactive experiences, AI-powered utilities, pixel game design, and creative development across platforms. Every product is driven by originality, user-friendly design, and purposeful impact.
+
+---
+
+## 🔗 Connect with Me
+
+- **LinkedIn:** [linkedin.com/in/ethanbonser](https://www.linkedin.com/in/ethanbonser)  
+- **GitHub:** [github.com/ethanbonser](https://github.com/ethanbonser)  
+
+---
+
+> "Creativity is intelligence having fun." — Albert Einstein
